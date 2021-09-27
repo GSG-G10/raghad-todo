@@ -130,20 +130,12 @@ function App() {
         {todos.map((elem) => {
           return (
             <Card
-              key={elem.id}
               style={{
                 margin: "6vh 0",
                 borderRadius: "5px",
                 boxShadow: "1px 4px 5px #b9b8b88a",
               }}
-              title={
-                <Checkbox
-                // name="todo"
-                // onChange={() => changeCheck(elem.id)}
-                >
-                  {elem.title}
-                </Checkbox>
-              }
+              title={<Checkbox key={elem.id}>{elem.title}</Checkbox>}
               extra={
                 <>
                   <Button
