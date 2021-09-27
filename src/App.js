@@ -10,6 +10,7 @@ import {
   Input,
   Divider,
   PageHeader,
+  Typography,
 } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 
@@ -22,13 +23,15 @@ function App() {
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [todos, setTodos] = useState([]);
+  const [edit, setEdit] = useState([]);
+  const [editableStr, setEditableStr] = useState("");
 
   // const [isAllChecked, setIsAllChecked] = useState(false);
-
   // const [checkedList, setCheckedList] = useState([]);
   // const [indeterminate, setIndeterminate] = useState(true);
   // const [checkAll, setCheckAll] = useState(false);
   const { TextArea } = Input;
+  const { Paragraph } = Typography;
 
   const showForm = () => {
     setIsForm(true);
@@ -92,7 +95,9 @@ function App() {
       return setTodos(newState);
     });
 
-  const editTodo = () => {};
+  const editTodo = (id) => {
+    setEdit(id);
+  };
 
   return (
     <>
@@ -154,7 +159,23 @@ function App() {
                 </>
               }
             >
-              <p style={{ marginBottom: "30px" }}>{elem.description}</p>
+              {edit === elem.id ? (
+                <Paragraph
+                  editable={{ onChange: setEditableStr }}
+                  style={{
+                    margin: "0 0 50px 0px",
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  {editableStr ? editableStr : elem.description}
+                </Paragraph>
+              ) : (
+                <Paragraph style={{ marginBottom: "30px" }}>
+                  {elem.description}
+                </Paragraph>
+              )}
+
               {elem.date ? (
                 <span style={{ color: "#939494" }}>{elem.date}</span>
               ) : null}
