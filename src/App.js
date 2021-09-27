@@ -8,7 +8,6 @@ import {
   Modal,
   Form,
   Input,
-  Spin,
   Divider,
   PageHeader,
 } from "antd";
@@ -126,6 +125,7 @@ function App() {
         {todos.map((elem) => {
           return (
             <Card
+              key={elem.id}
               style={{
                 margin: "6vh 0",
                 borderRadius: "5px",
