@@ -92,7 +92,7 @@ function App() {
   const deleteTodo = (i) =>
     setTodos((prev) => {
       const newState = prev.filter((elem) => elem.id !== i);
-      return setTodos(newState);
+      return newState;
     });
 
   const editTodo = (id) => {
@@ -153,7 +153,7 @@ function App() {
             >
               {edit === elem.id ? (
                 <Paragraph
-                  editable={{ onChange: setEditableStr }}
+                  editable={{ onChange: setEditableStr  }}
                   style={{
                     margin: "0 0 50px 0px",
                     display: "flex",
@@ -194,7 +194,7 @@ function App() {
           </Button>,
         ]}
       >
-        <Form onChange={handleInputsChange}>
+        <Form onChange={handleInputsChange} preserve={false}>
           <Form.Item
             label="Title"
             name="title"
